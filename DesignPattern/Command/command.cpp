@@ -50,11 +50,11 @@ public:
         light = l; 
     }
 
-    void execute() { 
+    void execute() override{ 
         light->on(); 
     }
 
-    void undo() { 
+    void undo() override{ 
         light->off(); 
     }
 };
@@ -68,10 +68,10 @@ public:
     FanCommand(Fan* f) { 
         fan = f; 
     }
-    void execute() { 
+    void execute() override { 
         fan->on(); 
     }
-    void undo() { 
+    void undo() override{ 
         fan->off(); 
     }
 };
