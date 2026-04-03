@@ -577,7 +577,6 @@ int main() {
     cout << "=== SNAKE AND LADDER GAME ===" << endl;
     
     SnakeAndLadderGame* game = nullptr;
-    Board* board = nullptr;
     
     cout << "Choose game setup:" << endl;
     cout << "1. Standard Game (10x10 board with traditional positions)" << endl;
@@ -590,7 +589,6 @@ int main() {
     if(choice == 1) {
         // Standard game
         game = SnakeAndLadderGameFactory::createStandardGame();
-        board = new Board(10);
         
     }
     else if(choice == 2) {
@@ -616,7 +614,6 @@ int main() {
         }
         
         game = SnakeAndLadderGameFactory::createRandomGame(boardSize, diff);
-        board = new Board(boardSize);
         
     } 
     else if(choice == 3) {
@@ -673,7 +670,6 @@ int main() {
             delete strategy;
         }
         
-        board = new Board(boardSize);
     }
     
     if(game == nullptr) {
@@ -703,7 +699,6 @@ int main() {
     
     // Cleanup
     delete game;
-    delete board;
     delete notifier;
     
     return 0;
