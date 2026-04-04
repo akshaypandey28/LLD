@@ -52,8 +52,8 @@ public:
 
 class SessionManager {
 private:
-    unordered_map<string, UserSession> activeSessions;
-    vector<UserSession> sessionHistory;
+    unordered_map<string, UserSession*> activeSessions;
+    vector<UserSession*> sessionHistory;
 
 public:
     void login(const string& userName) {
@@ -62,7 +62,7 @@ public:
             return;
         }
         
-        activeSessions[userName] = UserSession(userName);
+        activeSessions[userName] = new UserSession(userName);
         cout << "User '" << userName << "' logged in successfully.\n";
     }
 
@@ -73,9 +73,9 @@ public:
             return;
         }
 
-        UserSession session = it->second;
+        UserSession* session = it->second;
         activeSessions.erase(it);
-        session.markLoggedOut();
+        session->markLoggedOut();
         sessionHistory.push_back(session);
         cout << "User '" << userName << "' logged out successfully.\n";
     }
@@ -86,7 +86,7 @@ public:
             cout << "No completed sessions yet.\n";
         }
         for (const auto& session : sessionHistory) {
-            session.printSession();
+            session->printSession();
         }
     }
 };
