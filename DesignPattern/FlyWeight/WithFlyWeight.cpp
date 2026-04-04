@@ -7,6 +7,10 @@
 #include <chrono>
 using namespace std;
 
+//In AsteroidFactory, static is used so that there is exactly one shared pool of 
+//flyweight objects across the entire application.
+
+
 // Flyweight - Stores INTRINSIC state only
 class AsteroidFlyweight {
 private: 
