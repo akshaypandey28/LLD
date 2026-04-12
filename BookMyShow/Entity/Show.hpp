@@ -14,11 +14,12 @@ private:
     Screen* screen;
     string startTime;
     PricingStrategy* pricingStrategy;
+    static int counter;
 
 public:
-    Show(const int& id, Movie* movie, Screen* screen,
+    Show(Movie* movie, Screen* screen,
          const string& startTime, PricingStrategy* pricingStrategy) {
-        this->id = id;
+        this->id = counter++; // Assign a unique ID to each Show instance
         this->movie = movie;
         this->screen = screen;
         this->startTime = startTime;
@@ -45,3 +46,5 @@ public:
         return pricingStrategy;
     }
 };
+
+int Show::counter = 0;

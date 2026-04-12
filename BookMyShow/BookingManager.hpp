@@ -42,9 +42,10 @@ public:
                 .setPayment(payment)
                 .build();
             
-
+            
             // 5 => confirm the booking by marking the seats as booked
-
+            booking->confirmBooking();
+            
             seatLockManager->unlockSeats(show,seats,user->getId());
 
             return booking;

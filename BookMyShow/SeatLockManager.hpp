@@ -1,3 +1,4 @@
+#pragma once
 #include<iostream>
 #include<mutex> //this is used to prevent multiple threads from accessing the same resource at the same time
 #include<thread> //used to create and manage threads for parallel execution in C++.
@@ -11,7 +12,7 @@ class SeatLockManager {
 private:
     unordered_map<int,unordered_map<int,int>> lockedSeats; //(showId, (seatId, userId))
     mutex mtx; //to ensure that only one thread can access the lockedSeats map at a time
-    static const long LOCK_TIMEOUT_MS = 500; // Lock timeout in milliseconds
+    static constexpr long LOCK_TIMEOUT_MS = 500; // Lock timeout in milliseconds
 public:
     void lockSeats(Show* show,const vector<Seat*>& seats,const int userId){
         lock_guard<mutex> lock(mtx);
@@ -32,13 +33,16 @@ public:
             lockedSeats[showId][seatId] = userId;
         }
 
-        cout<<"Seats locked for user "<<userId<<" for show "<<showId<<" are \n";
+        cout<<"Seats locked for user "<<userId<<" for show "<<showId<<" are ";
 
         for(int i=0; i<seats.size(); i++){
             cout<<seats[i]->getId();
             if(i<seats.size()-1) cout<<", ";
         }
 
+        cout<<endl;
+        cout<<"-----------------------------------------------------------------"<<endl;
+        cout<<"-----------------------------------------------------------------"<<endl;
 
         thread([this,show,seats,userId](){
             this_thread::sleep_for(chrono::milliseconds(LOCK_TIMEOUT_MS));
@@ -68,12 +72,14 @@ public:
                     }
                 }
             }
+            cout<<"-----------------------------------------------------------------"<<endl;
+            cout<<"-----------------------------------------------------------------"<<endl;
             if(showLockSeats.empty()){
                 lockedSeats.erase(showIt);
             }
         }
     }
-    void shutdonw(){
+    void shutdown(){
         cout<<"Shutting down SeatLockManager, clearing all locks.\n";
     }    
 };

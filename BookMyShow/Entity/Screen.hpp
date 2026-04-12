@@ -10,10 +10,10 @@ class Screen {
 private:
     int id;
     vector<Seat*> seats;
-
+    static int counter;
 public:
-    Screen(const string& id) {
-        this->id = id;
+    Screen() {
+        this->id = counter++; // Assign a unique ID to each Screen instance
     }
 
     void addSeat(Seat* seat) {
@@ -28,3 +28,5 @@ public:
         return seats;
     }
 };
+
+int Screen::counter = 0;

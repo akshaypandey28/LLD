@@ -10,10 +10,10 @@ private:
     int id;
     string title;
     int durationInMinutes;
-
+    static int counter;
 public:
-    Movie(const int& id, const string& title, int durationInMinutes) {
-        this->id = id;
+    Movie(const string& title, int durationInMinutes) {
+        this->id = counter++; // Assign a unique ID to each Movie instance
         this->title = title;
         this->durationInMinutes = durationInMinutes;
     }
@@ -30,3 +30,5 @@ public:
         return durationInMinutes;
     }
 };
+
+int Movie::counter = 0; 

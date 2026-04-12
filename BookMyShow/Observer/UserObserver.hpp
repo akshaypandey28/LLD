@@ -1,3 +1,4 @@
+#pragma once
 #include<iostream>
 #include "MovieObserver.hpp"
 #include "../Entity/User.hpp"
@@ -17,5 +18,6 @@ public:
         cout << "Notification for " << user->getName()
             << " (" << user->getId() << "): Movie '"
             << movie->getTitle() << "' is now available for booking!" << endl;
+        cout<<"-----------------------------------------------------------------"<<endl;
     }
 };

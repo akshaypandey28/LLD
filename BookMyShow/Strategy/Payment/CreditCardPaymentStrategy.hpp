@@ -22,6 +22,7 @@ public:
 
     Payment* pay(double amount) override {
         cout << "Processing credit card payment of $" << amount << endl;
+        cout<<"-----------------------------------------------------------------"<<endl;
         bool paymentSuccess = (rand() % 100) > 5;
         
         string txnId = "TXN_" + to_string(this->txnCounter++);

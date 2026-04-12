@@ -13,11 +13,11 @@ private:
     string name;
     City* city;
     vector<Screen*> screens;
-
+    static int counter;
 public:
-    Cinema(const int& id, const string& name,
+    Cinema(const string& name,
            City* city, const vector<Screen*>& screens) {
-        this->id = id;
+        this->id = counter++; // Assign a unique ID to each Cinema instance
         this->name = name;
         this->city = city;
         this->screens = screens;
@@ -39,3 +39,5 @@ public:
         return screens;
     }
 };
+
+int Cinema::counter = 0; 

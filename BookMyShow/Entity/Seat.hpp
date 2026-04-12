@@ -13,10 +13,10 @@ private:
     int col;
     SeatType type;
     SeatStatus status;
-
+    static int counter;
 public:
-    Seat(const int& id, int row, int col, SeatType type) {
-        this->id = id;
+    Seat(int row, int col, SeatType type) {
+        this->id = counter++; // Assign a unique ID to each Seat instance
         this->row = row;
         this->col = col;
         this->type = type;
@@ -47,3 +47,5 @@ public:
         this->status = s;
     }
 };
+
+int Seat::counter = 0;

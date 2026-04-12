@@ -14,3 +14,12 @@ double getSeatTypePrice(SeatType type) {
         default: return 50.0;
     }
 }
+
+string seatTypeToString(SeatType type) {
+    switch (type) {
+        case SeatType::REGULAR:  return "Regular";
+        case SeatType::PREMIUM:  return "Premium";
+        case SeatType::RECLINER: return "Recliner";
+    }
+    return "Unknown";
+}

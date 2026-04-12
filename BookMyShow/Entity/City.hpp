@@ -8,10 +8,10 @@ class City {
 private:
     int id;
     string name;
-
+    static int counter; 
 public:
-    City(const int& id, const string& name) {
-        this->id = id;
+    City(const string& name) {
+        this->id = counter++; // Assign a unique ID to each City instance
         this->name = name;
     }
 
@@ -23,3 +23,5 @@ public:
         return name;
     }
 };
+
+int City::counter = 0; 

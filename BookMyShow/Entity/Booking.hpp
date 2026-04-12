@@ -1,3 +1,4 @@
+#pragma once
 #include<iostream>
 #include "User.hpp"
 #include "Seat.hpp"
@@ -56,11 +57,6 @@ private:
 public:
     BookingBuilder() {
         booking = new Booking();
-    }
-
-    BookingBuilder& setId(const int& id) {
-        booking->id = id;
-        return *this;
     }
 
     BookingBuilder& setUser(User* user) {
